@@ -1,5 +1,8 @@
+package fadergs.squadmaker;
+
 public class Players {
 
+    private int idPlayer;
     private int idTeam;
     private String name;
     private int numberShirt;
@@ -22,6 +25,14 @@ public class Players {
 
     public int getNumberShirt() {
         return numberShirt;
+    }
+
+    public int getIdPlayer() {
+        return idPlayer;
+    }
+
+    public void setIdPlayer(int idPlayer) {
+        this.idPlayer = idPlayer;
     }
 
     public void setNumberShirt(int numberShirt) {
