@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">footballSquadMaker</string>
+    <string name="app_name">Criador de times</string>
+    <string name="team_name">Nome do time</string>
 </resources>
