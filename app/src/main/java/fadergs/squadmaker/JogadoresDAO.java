@@ -8,44 +8,42 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JogadoresDAO {
+public class JogadoresDAO{
 
-    public class CadastroJogadorDAO {
+        public static void inserirJogador(Context contexto, Players jogador){
 
-        public static void inserirJogador (Context contexto, Jogador jogador){
-
-            Banco banco = new Banco(contexto);
+            DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
 
             ContentValues valores = new ContentValues();
-            valores.put("nome",jogador.getNomejogador());
-            valores.put("idtime",jogador.getIdtime());
+            valores.put("nome",jogador.getIdPlayer());
+            valores.put("idtime",jogador.getIdTeam());
             db.insert("jogador",null,valores);
         }
 
-        public static void editarJogador(Context contexto , Jogador jogador){
-            Banco banco = new Banco(contexto);
+        public static void editarJogador(Context contexto , Players jogador){
+            DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
             ContentValues valores = new ContentValues();
-            valores.put("nome",jogador.getNomejogador())
-            valores.put("idtime",jogador.getIdtime());
-            db.update("jogador",valores,"idjogador="+jogador.getIdjogador(),null);
+            valores.put("nome",jogador.getName());
+            valores.put("idtime",jogador.getIdTeam());
+            db.update("jogador",valores,"idjogador="+jogador.getIdPlayer(),null);
         }
 
 
         public static void excluir(Context contexto , int idjogador){
-            Banco banco = new Banco(contexto);
+            DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
             db.delete("jogador","idjogador="+idjogador,null);
 
 
         }
 
-        public static List<Jogador> getjogador(Context contexto){
+        public static List<Players> getjogador(Context contexto){
 
-            List<Jogador> listajogador = new ArrayList<>();
+            List<Players> listajogador = new ArrayList<>();
 
-            Banco banco = new Banco(contexto);
+            DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
 
             Cursor cursor = db.rawQuery("SELECT * FROM jogador ORDER BY nome",null);
@@ -54,10 +52,10 @@ public class JogadoresDAO {
                 cursor.moveToFirst();
 
                 do {
-                    Jogador j = new Jogador();
-                    j.setIdjogador(cursor.getInt(0));
-                    j.setnome(cursor.getString(1));
-                    j.setIdtime(cursor.getInt(3));
+                    Players j = new Players();
+                    j.setIdPlayer(cursor.getInt(0));
+                    j.setName(cursor.getString(1));
+                    j.setIdTeam(cursor.getInt(3));
                     listajogador.add(j);
 
                 }while(cursor.moveToNext());
@@ -66,9 +64,9 @@ public class JogadoresDAO {
 
         }
 
-        public static List <Jogadores > getJogadoresById(Context contexto){
-            List<Jogadores> listaJogadores = new ArrayList<>();
-            Banco banco = new Banco(contexto);
+        public static List <Players > getJogadoresById(Context contexto){
+            List<Players> listaJogadores = new ArrayList<>();
+            DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getReadableDatabase();
 
             String sql = "SELECT * FROM jogador WHERE id = Idjogador " ;
@@ -77,19 +75,15 @@ public class JogadoresDAO {
             if ( cursor.getCount() > 0 ){
                 cursor.moveToFirst();
 
-                Jogador j = new Jogador();
-                j.setId(  cursor.getInt( 0 ) );
-                j.setNome( cursor.getString( 1 ) );
-                j.setIdTime(cursor.getInt(2));
+                Players j = new Players();
+                j.setIdPlayer(  cursor.getInt( 0 ) );
+                j.setName( cursor.getString( 1 ) );
+                j.setIdTeam(cursor.getInt(2));
 
-                return j;
+                return (List<Players>) j; // VERIFICAR CLASSE IMPORTADA//
             }else {
                 return null;
             }
         }
-
-
-
-
 
 }

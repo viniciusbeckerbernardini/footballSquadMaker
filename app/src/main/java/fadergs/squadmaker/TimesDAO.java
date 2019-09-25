@@ -10,8 +10,8 @@ import java.util.List;
 
 public class TimesDAO {
 
-    public static void inserirTime(Context contexto , Time time){
-        Banco banco = new Banco(contexto);
+    public static void inserirTime(Context contexto , Team time){
+        DBTeams banco = new DBTeams(contexto);
         SQLiteDatabase db = banco.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
@@ -22,8 +22,8 @@ public class TimesDAO {
     }
 
 
-    public static void editartime(Context contexto , Time time){
-        Banco banco = new Banco(contexto);
+    public static void editartime(Context contexto , Teams time){
+        DBTeams banco = new DBTeams(contexto);
         SQLiteDatabase db = banco.getWritableDatabase();
 
 
@@ -34,18 +34,18 @@ public class TimesDAO {
     }
 
     public static void excluirTime(Context contexto, int idtime){
-        Banco banco = new Banco(contexto);
+        DBTeams banco = new DBTeams(contexto);
         SQLiteDatabase db = banco.getWritableDatabase();
 
         db.delete("time","id="+idtime,null);
 
     }
 
-    public static List<Time> getTime(Context contexto){
+    public static List<Teams> getTime(Context contexto){
 
-        List<Time> listaTimes = new ArrayList<>();
+        List<Teams> listaTimes = new ArrayList<>();
 
-        Banco banco = new Banco(contexto);
+        DBTeams banco = new DBTeams(contexto);
         SQLiteDatabase db = banco.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM time ORDER BY nome",null);
@@ -54,7 +54,7 @@ public class TimesDAO {
             cursor.moveToFirst();
 
             do {
-                Time t = new Time();
+                Teams t = new Teams();
                 t.setId(cursor.getInt(0));
                 t.setNome(cursor.getString(1));
                 lista.add(t);
@@ -63,8 +63,8 @@ public class TimesDAO {
         return lista;
     }
 
-    public static Time getTimeByID(Context contexto , int idtime){
-        Banco banco = new Banco(contexto);
+    public static Teams getTimeByID(Context contexto , int idtime){
+        DBTeams banco = new DBTeams(contexto);
         SQLiteDatabase db = banco.getWritableDatabase();
 
         Cursor cursor = db.rawQuery( "SELECT * FROM time WHERE id = " + idtime ,null);
@@ -73,7 +73,7 @@ public class TimesDAO {
 
             cursor.moveToFirst();
 
-            Time t = new Time();
+            Teams t = new Teams();
 
             t.setId(cursor.getInt(0));
             t.setNome(cursor.getString(1));
@@ -85,11 +85,5 @@ public class TimesDAO {
         }
 
     }
-
-
-
-
-
-
 
 }
