@@ -26,6 +26,7 @@ public class Team {
 
     @Override
     public String toString(){
-        return "Nome do time"+this.getName();
+        return  "ID do time: "+this.getID()+
+                "Nome do time: "+this.getName();
     }
 }

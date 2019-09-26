@@ -2,13 +2,19 @@ package fadergs.squadmaker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +22,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView teamList = (ListView) findViewById(R.id.LVTeams);
+
+        FloatingActionButton btnCreateTeam = (FloatingActionButton) findViewById(R.id.FABCreateTeam);
+        btnCreateTeam.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i = new Intent(MainActivity.this, teamFormActivity.class);
+                startActivity( i );
+            }
+        });
 
         ArrayList<String> teams = fakeTeams();
 
@@ -33,5 +48,6 @@ public class MainActivity extends AppCompatActivity {
         teams.add("Glória de vacaria");
 
         return teams;
+
     }
 }
