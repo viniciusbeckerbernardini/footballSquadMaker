@@ -64,7 +64,7 @@ public class PlayersDAO {
 
         }
 
-        public static List <Players> getPlayersById(Context contexto){
+        public static Players getPlayersById(Context contexto, int idPlayer){
             List<Players> playersList = new ArrayList<>();
             DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getReadableDatabase();
@@ -80,7 +80,7 @@ public class PlayersDAO {
                 j.setName( cursor.getString( 1 ) );
                 j.setIdTeam(cursor.getInt(2));
 
-                return (List<Players>) j; // VERIFICAR CLASSE IMPORTADA//
+                return j; // VERIFICAR CLASSE IMPORTADA//
             }else {
                 return null;
             }

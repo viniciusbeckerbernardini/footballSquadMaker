@@ -1,8 +1,10 @@
 package fadergs.squadmaker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -29,9 +31,53 @@ public class FormActivity extends AppCompatActivity {
             idPlayer = getIntent().getExtras().getInt("idPlayer");
             loadForm(idPlayer);
         }
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                save();
+            }
+        });
     }
 
+    private void save(){
+
+        String name = etNome.getText().toString();
+
+        String numberShirt = etNrCamisa.getText().toString();
+
+        if(name.isEmpty() ){
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setIcon(android.R.drawable.ic_dialog_alert);
+            alert.setTitle("Anteção!!");
+            alert.setMessage("Vo deve Informar o nome do çproduto.");
+            alert.setPositiveButton("OK", null);
+            alert.show();
+        }else{
+            Players players = new Players();
+
+            players.setName(name);
+            if(numberShirt.isEmpty() ){
+                players.setNumberShirt(0);
+            }else{
+                players.setNumberShirt(Integer.valueOf(numberShirt));
+            }
+            if(acao.equals(("inserir"))){
+                PlayersDAO.insertPlay(this,players);
+            }
+            if(acao.equals("editar")){
+                players.setIdPlayer(idPlayer);
+                PlayersDAO.editPlayers(this,players);
+            }
+            this.finish();
+        }
+
+    }
+
+
+
     private void loadForm(int idPlayer) {
-        Players players = PlayersDAO.getJogadoresById()
+        Players players = PlayersDAO.getPlayersById(this, idPlayer);
+        etNome.setText(players.getName() );
+        etNrCamisa.setText(String.valueOf(players.getNumberShirt() ) );
     }
 }
