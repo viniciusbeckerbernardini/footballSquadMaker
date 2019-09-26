@@ -20,7 +20,7 @@ public class DBTeams extends SQLiteOpenHelper {
                 "nameTeam TEXT);");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS players("+
                 "idPlayer INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,"+
-                "nameTeam TEXT,"+
+                "namePlayer TEXT,"+
                 "IdTeam INTEGER,"+
                 "numberShirt INTEGER,"+
                 "FOREIGN KEY(IdTeam) REFERENCES team(idTeam));");

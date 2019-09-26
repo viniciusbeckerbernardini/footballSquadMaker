@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">footballSquadMaker</string>
     <string name="txtNamePlayer">Joãozinho</string>
+    <string name="txtNumberShirt">Camisa 10</string>
 </resources>
