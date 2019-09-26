@@ -16,9 +16,9 @@ import java.util.List;
 
             ContentValues valores = new ContentValues();
 
-            valores.put("name",());
+            valores.put("nameTeam", teams.getName());
 
-            db.insert("team",null,valores);
+            db.insert("teams",null,valores);
         }
 
 
@@ -28,46 +28,46 @@ import java.util.List;
 
 
             ContentValues valores = new ContentValues();
-            valores.put("name",team.get());
-            db.update("team",valores,"id="+team.getId(),null);
+            valores.put("nameTeam",team.getName());
+            db.update("teams",valores,"id="+team.getID(),null);
 
         }
 
-        public static void excludeTeam(Context contexto, int idtime){
+        public static void deleteTeam(Context contexto, int idtime){
             DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
 
-            db.delete("team","id="+idtime,null);
+            db.delete("teams","id="+idtime,null);
 
         }
 
-        public static List<Team> getTime(Context contexto){
+        public static List<Team> getTeam(Context contexto){
 
             List<Team> listTeams = new ArrayList<>();
 
             DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
 
-            Cursor cursor = db.rawQuery("SELECT * FROM Teams ORDER BY name",null);
+            Cursor cursor = db.rawQuery("SELECT * FROM teams ORDER BY name",null);
 
             if(cursor.getCount()>0){
                 cursor.moveToFirst();
 
                 do {
                     Team t = new Team();
-                    t.setId(cursor.getInt(0));
-                    t.setNome(cursor.getString(1));
-                    list.add(t);
+                    t.setID(cursor.getInt(0));
+                    t.setName((cursor.getString(1)));
+                    listTeams.add(t);
                 }while(cursor.moveToNext());
             }
-            return list;
+            return listTeams;
         }
 
-        public static Team getTimeByID(Context contexto , int idtime){
-            DBTeams banco = new DBTeams(contexto);
+        public static Team getTeamByID(Context context, int teamID){
+            DBTeams banco = new DBTeams(context);
             SQLiteDatabase db = banco.getWritableDatabase();
 
-            Cursor cursor = db.rawQuery( "SELECT * FROM team WHERE id = " + idtime ,null);
+            Cursor cursor = db.rawQuery( "SELECT * FROM teams WHERE id = " + teamID ,null);
 
             if(cursor.getCount()>0){
 
@@ -75,8 +75,8 @@ import java.util.List;
 
                 Team t = new Team();
 
-                t.setId(cursor.getInt(0));
-                t.setNome(cursor.getString(1));
+                t.setID(cursor.getInt(0));
+                t.setName(cursor.getString(1));
 
                 return t;
             }else{
@@ -85,12 +85,5 @@ import java.util.List;
             }
 
         }
-
-
-
-
-
-
-
     }
-}
+

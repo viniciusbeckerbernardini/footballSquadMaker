@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class teamFormActivity extends AppCompatActivity {
 
@@ -40,10 +41,14 @@ public class teamFormActivity extends AppCompatActivity {
             alert.setPositiveButton("OK",null);
             alert.show();
         }else{
-            Team t = new Team(name);
+            Team t = new Team();
 
+            t.setName(name);
+            Toast.makeText(this, t.getName(), Toast.LENGTH_SHORT).show();
 
+            TeamsDAO.insertTeam(this,t);
 
+            this.finish();
         }
     }
 }

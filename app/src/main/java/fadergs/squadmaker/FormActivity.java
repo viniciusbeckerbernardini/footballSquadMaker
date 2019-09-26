@@ -32,7 +32,7 @@ public class FormActivity extends AppCompatActivity {
     }
 
     private void loadForm(int idPlayer) {
-        Players players = PlayersDAO.getJogadoresById()
+        //Players players = PlayersDAO.getPlayersById();
     }
 
     @Override

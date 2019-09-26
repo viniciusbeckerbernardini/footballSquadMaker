@@ -5,10 +5,6 @@ public class Team {
     private int id;
     private String name;
 
-    public Team(String name){
-        this.setName(name);
-    }
-
     public String getName()
     {
         return this.name;
@@ -17,6 +13,11 @@ public class Team {
 
     public int getID(){
         return this.id;
+    }
+
+
+    public void setID(int id){
+        this.id = id;
     }
 
     public void setName(String name){
