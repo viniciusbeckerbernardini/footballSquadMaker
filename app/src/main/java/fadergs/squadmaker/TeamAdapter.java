@@ -25,12 +25,12 @@ public class TeamAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return this.teamsList.size();
+        return teamsList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return this.teamsList.get(i);
+        return teamsList.get(i);
     }
 
     @Override
@@ -47,12 +47,13 @@ public class TeamAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.activity_layout_list,null);
             sp.tvName = (TextView) view.findViewById(R.id.LTVID);
             sp.tvID = (TextView) view.findViewById(R.id.LTVName);
+            sp.layout = (LinearLayout) view.findViewById(R.id.layout);
+            view.setTag(sp);
         }else{
             sp = (suportHandler) view.getTag();
         }
 
         Team team = teamsList.get(i);
-
         sp.tvID.setText(String.valueOf(team.getID()));
         sp.tvName.setText(String.valueOf(team.getName()));
 
@@ -61,7 +62,6 @@ public class TeamAdapter extends BaseAdapter {
         }else{
             sp.layout.setBackgroundColor(Color.rgb(230,230,230) );
         }
-
 
         return view;
     }

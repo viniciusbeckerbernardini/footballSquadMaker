@@ -16,11 +16,11 @@ public class DBTeams extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS teams ( "+
-                "idTeam INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL ,"+
+                "idTeam INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,"+
                 "nameTeam TEXT);");
 
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS players( " +
-                "idPlayer INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL  ,"+
+                "idPlayer INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
                 "namePlayer TEXT,"+
                 "IdTeam INTEGER,"+
                 "numberShirt INTEGER,"+

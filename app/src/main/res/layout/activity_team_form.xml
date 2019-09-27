@@ -10,18 +10,21 @@
         android:id="@+id/ETTeamName"
         android:layout_width="299dp"
         android:layout_height="54dp"
-        android:layout_marginTop="272dp"
+        android:layout_marginTop="204dp"
         android:hint="Digite o nome do time"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="56dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCreateTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="208dp"
-        android:text="Button"
+        android:layout_marginTop="84dp"
+        android:text="Cadastrar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ETTeamName"
-        tools:layout_editor_absoluteX="161dp" />
+        app:layout_constraintVertical_bias="0.211"
+        tools:layout_editor_absoluteX="153dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

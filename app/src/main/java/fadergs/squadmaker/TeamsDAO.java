@@ -29,7 +29,7 @@ import java.util.List;
 
             ContentValues valores = new ContentValues();
             valores.put("nameTeam",team.getName());
-            db.update("teams",valores,"id="+team.getID(),null);
+            db.update("teams",valores,"IdTeam="+team.getID(),null);
 
         }
 
@@ -37,21 +37,25 @@ import java.util.List;
             DBTeams banco = new DBTeams(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
 
-            db.delete("teams","id="+idtime,null);
+            db.delete("teams","IdTeam="+idtime,null);
 
         }
 
         public static List<Team> getTeam(Context contexto){
 
-            List<Team> listTeams = new ArrayList<>();
 
+            List<Team> listTeams = new ArrayList<>();
             DBTeams banco = new DBTeams(contexto);
+
+
             SQLiteDatabase db = banco.getWritableDatabase();
 
-            Cursor cursor = db.rawQuery("SELECT * FROM teams ORDER BY name",null);
+            Cursor cursor = db.rawQuery("SELECT * FROM teams ORDER BY nameTeam",null);
 
             if(cursor.getCount()>0){
                 cursor.moveToFirst();
+
+                System.out.println(cursor);
 
                 do {
                     Team t = new Team();
@@ -67,7 +71,7 @@ import java.util.List;
             DBTeams banco = new DBTeams(context);
             SQLiteDatabase db = banco.getWritableDatabase();
 
-            Cursor cursor = db.rawQuery( "SELECT * FROM teams WHERE id = " + teamID ,null);
+            Cursor cursor = db.rawQuery( "SELECT * FROM teams WHERE IdTeam = " + teamID ,null);
 
             if(cursor.getCount()>0){
 

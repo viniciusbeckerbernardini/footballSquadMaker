@@ -7,7 +7,7 @@ public class Team {
 
     public String getName()
     {
-        return this.name;
+        return name;
 
     }
 

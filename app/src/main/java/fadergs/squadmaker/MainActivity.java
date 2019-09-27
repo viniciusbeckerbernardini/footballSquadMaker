@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        loadTeamList();
 
     }
 
@@ -81,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
             fakeTeam.setName("Lista vazia!");
             teamListL.add(fakeTeam);
         }
+
+        teamListL.toString();
+        Toast.makeText(this, teamListL.toString(), Toast.LENGTH_SHORT).show();
+
         TeamAdapter teamAdapter = new TeamAdapter(this, teamListL);
         teamList.setAdapter(teamAdapter);
     }
