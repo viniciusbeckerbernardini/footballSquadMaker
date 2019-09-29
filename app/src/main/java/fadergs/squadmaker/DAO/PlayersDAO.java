@@ -1,4 +1,4 @@
-package fadergs.squadmaker;
+package fadergs.squadmaker.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,11 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import fadergs.squadmaker.DB.Persistence;
+import fadergs.squadmaker.Model.Players;
+
 public class PlayersDAO {
 
         public static void insertPlay(Context contexto, Players players){
 
-            DBTeams banco = new DBTeams(contexto);
+            Persistence banco = new Persistence(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -22,7 +25,7 @@ public class PlayersDAO {
         }
 
         public static void editPlayers(Context contexto , Players players){
-            DBTeams banco = new DBTeams(contexto);
+            Persistence banco = new Persistence(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put("namePlayer",players.getName());
@@ -32,7 +35,7 @@ public class PlayersDAO {
 
 
         public static void exclud(Context contexto , int idPlayer){
-            DBTeams banco = new DBTeams(contexto);
+            Persistence banco = new Persistence(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
             db.delete("namePlayer","idPlayer="+idPlayer,null);
 
@@ -43,7 +46,7 @@ public class PlayersDAO {
 
             List<Players> listPlayers = new ArrayList<>();
 
-            DBTeams banco = new DBTeams(contexto);
+            Persistence banco = new Persistence(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
 
             Cursor cursor = db.rawQuery("SELECT * FROM Players ORDER BY namePlayer",null);
@@ -66,7 +69,7 @@ public class PlayersDAO {
 
         public static List <Players> getPlayersById(Context contexto){
             List<Players> playersList = new ArrayList<>();
-            DBTeams banco = new DBTeams(contexto);
+            Persistence banco = new Persistence(contexto);
             SQLiteDatabase db = banco.getReadableDatabase();
 
             String sql = "SELECT * FROM Players WHERE id = IdPlayer " ;

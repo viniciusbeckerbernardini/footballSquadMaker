@@ -1,15 +1,15 @@
-package fadergs.squadmaker;
+package fadergs.squadmaker.DB;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBTeams extends SQLiteOpenHelper {
+public class Persistence extends SQLiteOpenHelper {
 
     private static final int VERSAO = 1;
     private static final String NOME = "AppSquadMaker";
 
-    public DBTeams(Context context){
+    public Persistence(Context context){
         super(context,NOME,null,VERSAO);
     }
 

@@ -1,4 +1,4 @@
-package fadergs.squadmaker;
+package fadergs.squadmaker.Model;
 
 public class Team {
 
@@ -11,9 +11,7 @@ public class Team {
 
     }
 
-    public int getID(){
-        return this.id;
-    }
+    public int getID(){ return this.id; }
 
 
     public void setID(int id){

@@ -1,24 +1,23 @@
 package fadergs.squadmaker;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.Adapter;
 import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.Toolbar;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
 import android.widget.AdapterView;
+import android.widget.Toast;
+
+import fadergs.squadmaker.DAO.TeamsDAO;
+import fadergs.squadmaker.Model.Team;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         btnCreateTeam.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent i = new Intent(MainActivity.this, teamFormActivity.class);
+                Intent i = new Intent(MainActivity.this, TeamFormActivity.class);
                 startActivity( i );
             }
         });
@@ -46,6 +45,37 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l){
                 deleteTeam( (Team) adapterView.getItemAtPosition(i) );
                 return true;
+            }
+        });
+
+        teamList.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(final AdapterView<?> adapterView, View view, final int i, long id) {
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Escolha uma opção");
+
+
+                builder.setPositiveButton("Atualizar time", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        updateTeam( (Team) adapterView.getItemAtPosition(i));
+                    }
+                });
+
+                builder.setNegativeButton("Excluir time", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteTeam( (Team) adapterView.getItemAtPosition(i) );
+                    }
+                });
+
+                builder.create();
+                builder.show();
+
+                return true;
+
             }
         });
 
@@ -67,6 +97,20 @@ public class MainActivity extends AppCompatActivity {
         alerta.show();
     }
 
+    private void updateTeam(final Team team){
+
+
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("teamID",team.getID());
+        bundle.putString("teamName",team.getName());
+        Intent intent = new Intent(MainActivity.this,TeamFormActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -83,9 +127,6 @@ public class MainActivity extends AppCompatActivity {
             fakeTeam.setName("Lista vazia!");
             teamListL.add(fakeTeam);
         }
-
-        teamListL.toString();
-        Toast.makeText(this, teamListL.toString(), Toast.LENGTH_SHORT).show();
 
         TeamAdapter teamAdapter = new TeamAdapter(this, teamListL);
         teamList.setAdapter(teamAdapter);

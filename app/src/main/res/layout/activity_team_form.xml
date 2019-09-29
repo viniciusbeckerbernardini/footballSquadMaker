@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".teamFormActivity">
+    tools:context=".TeamFormActivity">
 
     <EditText
         android:id="@+id/ETTeamName"
         android:layout_width="299dp"
         android:layout_height="54dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="260dp"
         android:hint="Digite o nome do time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,8 +23,9 @@
         android:layout_marginTop="84dp"
         android:text="Cadastrar"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ETTeamName"
-        app:layout_constraintVertical_bias="0.211"
-        tools:layout_editor_absoluteX="153dp" />
+        app:layout_constraintVertical_bias="0.273" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

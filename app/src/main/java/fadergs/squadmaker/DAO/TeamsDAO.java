@@ -1,4 +1,4 @@
-package fadergs.squadmaker;
+package fadergs.squadmaker.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,25 +8,26 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-    public class TeamsDAO {
+import fadergs.squadmaker.DB.Persistence;
+import fadergs.squadmaker.Model.Team;
 
-        public static void insertTeam(Context contexto , Team teams){
-            DBTeams banco = new DBTeams(contexto);
-            SQLiteDatabase db = banco.getWritableDatabase();
+public class TeamsDAO {
 
-            ContentValues valores = new ContentValues();
+        public static void insertTeam(Context context, Team teams){
+            Persistence connection = new Persistence(context);
+            SQLiteDatabase db = connection.getWritableDatabase();
 
-            valores.put("nameTeam", teams.getName());
+            ContentValues contentValues = new ContentValues();
 
-            db.insert("teams",null,valores);
+            contentValues.put("nameTeam", teams.getName());
+
+            db.insert("teams",null,contentValues);
         }
 
 
-        public static void editartime(Context contexto , Team team){
-            DBTeams banco = new DBTeams(contexto);
+        public static void updateTeam(Context context , Team team){
+            Persistence banco = new Persistence(context);
             SQLiteDatabase db = banco.getWritableDatabase();
-
-
             ContentValues valores = new ContentValues();
             valores.put("nameTeam",team.getName());
             db.update("teams",valores,"IdTeam="+team.getID(),null);
@@ -34,7 +35,7 @@ import java.util.List;
         }
 
         public static void deleteTeam(Context contexto, int idtime){
-            DBTeams banco = new DBTeams(contexto);
+            Persistence banco = new Persistence(contexto);
             SQLiteDatabase db = banco.getWritableDatabase();
 
             db.delete("teams","IdTeam="+idtime,null);
@@ -42,13 +43,10 @@ import java.util.List;
         }
 
         public static List<Team> getTeam(Context contexto){
-
-
             List<Team> listTeams = new ArrayList<>();
-            DBTeams banco = new DBTeams(contexto);
+            Persistence persistence = new Persistence(contexto);
 
-
-            SQLiteDatabase db = banco.getWritableDatabase();
+            SQLiteDatabase db = persistence.getWritableDatabase();
 
             Cursor cursor = db.rawQuery("SELECT * FROM teams ORDER BY nameTeam",null);
 
@@ -68,7 +66,7 @@ import java.util.List;
         }
 
         public static Team getTeamByID(Context context, int teamID){
-            DBTeams banco = new DBTeams(context);
+            Persistence banco = new Persistence(context);
             SQLiteDatabase db = banco.getWritableDatabase();
 
             Cursor cursor = db.rawQuery( "SELECT * FROM teams WHERE IdTeam = " + teamID ,null);

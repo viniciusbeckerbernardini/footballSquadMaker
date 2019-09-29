@@ -1,4 +1,4 @@
-package fadergs.squadmaker;
+package fadergs.squadmaker.Model;
 
 public class Players {
 

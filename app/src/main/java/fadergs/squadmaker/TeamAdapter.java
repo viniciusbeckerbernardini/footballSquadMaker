@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import fadergs.squadmaker.Model.Team;
+
 public class TeamAdapter extends BaseAdapter {
 
     private List<Team> teamsList;
@@ -45,8 +47,8 @@ public class TeamAdapter extends BaseAdapter {
 
         if(view == null){
             view = inflater.inflate(R.layout.activity_layout_list,null);
-            sp.tvName = (TextView) view.findViewById(R.id.LTVID);
-            sp.tvID = (TextView) view.findViewById(R.id.LTVName);
+            sp.tvID = (TextView) view.findViewById(R.id.LTVID);
+            sp.tvName = (TextView) view.findViewById(R.id.LTVName);
             sp.layout = (LinearLayout) view.findViewById(R.id.layout);
             view.setTag(sp);
         }else{

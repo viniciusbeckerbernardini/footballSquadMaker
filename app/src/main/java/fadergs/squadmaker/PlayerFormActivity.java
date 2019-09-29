@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class FormActivity extends AppCompatActivity {
+public class PlayerFormActivity extends AppCompatActivity {
 
     private EditText etNome, etNrCamisa;
     private Button btnSave;
@@ -17,7 +17,7 @@ public class FormActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form);
+        setContentView(R.layout.activity_player_form);
 
         etNome = (EditText) findViewById(R.id.etNome);
         etNrCamisa = (EditText) findViewById(R.id.etNrCamisa);
