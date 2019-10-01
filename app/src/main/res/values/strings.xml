@@ -1,8 +1,25 @@
 <resources>
     <string name="app_name">Criador de times</string>
-    <string name="team_id">ID do time</string>
-    <string name="team_name">Nome do time</string>
-    <string name="txtNamePlayer">Joãozinho</string>
-    <string name="txtNumberShirt">Camisa 10</string>
-    <string name="title_activity_list__player">List_PlayerActivity</string>
+    <string name="team_id">ID do time </string>
+    <string name="team_name">Nome do time </string>
+    <string name="txtNamePlayer">Digite o nome do jogador </string>
+    <string name="txtNumberShirt">Digite o número da camiseta </string>
+    <string name="txtNameOfTeam">Digite o nome do time </string>
+    <string name="txtRegisterPlayers">Cadastrar jogadores </string>
+    <string name="txtRegisterTeam">Cadastrar times </string>
+    <string name="btnSave">Salvar </string>
+    <string name="title_activity_list__player">List_PlayerActivity </string>
+    <string name="txtChoiceOption">Escolha uma opção </string>
+    <string name="txtUpdateTeam">Atualizar time </string>
+    <string name="txtUpdatePlayer">Atualizar jogador </string>
+    <string name="txtDeleteTeam">Excluir time </string>
+    <string name="txtDeletePlayer">Excluir jogador </string>
+    <string name="txtConfirmDeleteTeam">Confirma a exclusão do time </string>
+    <string name="txtConfirmDeletePlayer">Confirma a exclusão do Jogador </string>
+    <string name="txtCancel">Cancelar </string>
+    <string name="txtYes">Sim </string>
+    <string name="txtEmptyList">Lista Vazia ! </string>
+    <string name="txtAttention">Atenção, vacilão </string>
+    <string name="txtMessageTeam">Preenche o time aí, tá de sacanagem ? </string>
+    <string name="txtMessagePlayer">Preenche o time aí, tá de sacanagem ? </string>
 </resources>
