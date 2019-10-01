@@ -13,80 +13,86 @@ import fadergs.squadmaker.Model.Players;
 
 public class PlayersDAO {
 
-        public static void insertPlay(Context contexto, Players players){
+    public static void insertPlay(Context contexto, Players players){
 
-            Persistence banco = new Persistence(contexto);
-            SQLiteDatabase db = banco.getWritableDatabase();
+        Persistence banco = new Persistence(contexto);
+        SQLiteDatabase db = banco.getWritableDatabase();
 
-            ContentValues values = new ContentValues();
-            values.put("nameTeams",players.getIdPlayer());
-            values.put("idTeam",players.getIdTeam());
-            db.insert("namePlayer",null,values);
-        }
+        ContentValues values = new ContentValues();
+        values.put("IdTeam",players.getIdTeam());
+        values.put("namePlayer",players.getName());
+        values.put("numberShirt",players.getNumberShirt());
+        db.insert("players",null,values);
 
-        public static void editPlayers(Context contexto , Players players){
-            Persistence banco = new Persistence(contexto);
-            SQLiteDatabase db = banco.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put("namePlayer",players.getName());
-            values.put("idTeam",players.getIdTeam());
-            db.update("namePlayer",values,"idPlayer="+players.getIdPlayer(),null);
-        }
+    }
 
-
-        public static void exclud(Context contexto , int idPlayer){
-            Persistence banco = new Persistence(contexto);
-            SQLiteDatabase db = banco.getWritableDatabase();
-            db.delete("namePlayer","idPlayer="+idPlayer,null);
+    public static void editPlayers(Context contexto , Players players){
+        Persistence banco = new Persistence(contexto);
+        SQLiteDatabase db = banco.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("namePlayer",players.getName());
+        values.put("numberShirt",players.getNumberShirt());
+        values.put("idTeam",players.getIdTeam());
+        db.update("players",values,"idPlayer="+players.getIdPlayer(),null);
+    }
 
 
-        }
+    public static void exclud(Context contexto , int idPlayer){
+        Persistence banco = new Persistence(contexto);
+        SQLiteDatabase db = banco.getWritableDatabase();
+        db.delete("players","idPlayer="+idPlayer,null);
 
-        public static List<Players> getPlay(Context contexto){
 
-            List<Players> listPlayers = new ArrayList<>();
+    }
 
-            Persistence banco = new Persistence(contexto);
-            SQLiteDatabase db = banco.getWritableDatabase();
+    public static List<Players> getPlay(Context contexto){
 
-            Cursor cursor = db.rawQuery("SELECT * FROM Players ORDER BY namePlayer",null);
+        List<Players> listPlayers = new ArrayList<>();
 
-            if(cursor.getCount()>0){
-                cursor.moveToFirst();
+        Persistence banco = new Persistence(contexto);
+        SQLiteDatabase db = banco.getWritableDatabase();
 
-                do {
-                    Players j = new Players();
-                    j.setIdPlayer(cursor.getInt(0));
-                    j.setName(cursor.getString(1));
-                    j.setIdTeam(cursor.getInt(3));
-                    listPlayers.add(j);
+        Cursor cursor = db.rawQuery("SELECT * FROM Players ORDER BY namePlayer",null);
 
-                }while(cursor.moveToNext());
-            }
-            return listPlayers;
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
 
-        }
+            System.out.println(cursor);
 
-        public static List <Players> getPlayersById(Context contexto){
-            List<Players> playersList = new ArrayList<>();
-            Persistence banco = new Persistence(contexto);
-            SQLiteDatabase db = banco.getReadableDatabase();
-
-            String sql = "SELECT * FROM Players WHERE id = IdPlayer " ;
-            Cursor cursor = db.rawQuery( sql ,null);
-
-            if ( cursor.getCount() > 0 ){
-                cursor.moveToFirst();
-
+            do {
                 Players j = new Players();
-                j.setIdPlayer(  cursor.getInt( 0 ) );
-                j.setName( cursor.getString( 1 ) );
+                j.setIdPlayer(cursor.getInt(0));
+                j.setName(cursor.getString(1));
+                j.setNumberShirt(cursor.getString(3));
                 j.setIdTeam(cursor.getInt(2));
+                listPlayers.add(j);
 
-                return (List<Players>) j; // VERIFICAR CLASSE IMPORTADA//
-            }else {
-                return null;
-            }
+            }while(cursor.moveToNext());
         }
+        return listPlayers;
+
+    }
+
+    public static Players getPlayersById(Context contexto, int idPlayer){
+
+        Persistence banco = new Persistence(contexto);
+        SQLiteDatabase db = banco.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery( "SELECT * FROM players WHERE idPlayer = " + idPlayer ,null);
+
+        if ( cursor.getCount() > 0 ){
+            cursor.moveToFirst();
+
+            Players j = new Players();
+            j.setIdPlayer(  cursor.getInt( 0 ) );
+            j.setName( cursor.getString( 1 ) );
+            j.setNumberShirt( cursor.getString( 3 ) );
+            j.setIdTeam(cursor.getInt(2));
+
+            return j;
+        }else {
+            return null;
+        }
+    }
 
 }

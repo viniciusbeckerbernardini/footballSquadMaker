@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import fadergs.squadmaker.DAO.TeamsDAO;
+import fadergs.squadmaker.Model.Players;
 import fadergs.squadmaker.Model.Team;
 
 
@@ -45,6 +46,16 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l){
                 deleteTeam( (Team) adapterView.getItemAtPosition(i) );
                 return true;
+            }
+        });
+
+        teamList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                sendIdTeamPlayer((Team) adapterView.getItemAtPosition(i));
+                //Intent intent = new Intent(MainActivity.this, List_PlayerActivity.class);
+                //intent.putExtra("idTeam", team.getID());
+                //startActivity(intent);
             }
         });
 
@@ -109,6 +120,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+
+    private void sendIdTeamPlayer(final Team team){
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("teamID",team.getID());
+        //bundle.putString("teamName",team.getName());
+        Intent intent = new Intent(MainActivity.this,List_PlayerActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

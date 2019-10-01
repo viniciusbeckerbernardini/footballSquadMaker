@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TeamFormActivity"></activity>
+        <activity
+            android:name=".List_PlayerActivity"
+            android:label="@string/title_activity_list__player"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".TeamFormActivity" />
         <activity android:name=".PlayerFormActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
