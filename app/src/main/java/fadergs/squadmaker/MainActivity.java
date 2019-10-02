@@ -53,9 +53,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 sendIdTeamPlayer((Team) adapterView.getItemAtPosition(i));
-                //Intent intent = new Intent(MainActivity.this, List_PlayerActivity.class);
-                //intent.putExtra("idTeam", team.getID());
-                //startActivity(intent);
+               // Intent intent = new Intent(MainActivity.this, List_PlayerActivity.class);
+              // Team team = (Team) adapterView.getItemAtPosition(i);
+
+               // intent.putExtra("IdTeam", team.getID());
+               // startActivity(intent);
             }
         });
 
