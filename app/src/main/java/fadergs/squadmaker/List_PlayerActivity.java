@@ -57,17 +57,17 @@ public class List_PlayerActivity extends AppCompatActivity {
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(List_PlayerActivity.this);
-                builder.setTitle("Escolha uma opção");
+                builder.setTitle(getString(R.string.txtChoiceOption));
 
 
-                builder.setPositiveButton("Atualizar time", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.txtUpdateTeam), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         updateTeam( (Players) adapterView.getItemAtPosition(i));
                     }
                 });
 
-                builder.setNegativeButton("Excluir time", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.txtDeleteTeam), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteTeam( (Players) adapterView.getItemAtPosition(i) );
@@ -94,11 +94,11 @@ public class List_PlayerActivity extends AppCompatActivity {
     }
     private void deleteTeam(final Players players){
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
-        alerta.setTitle("Excluir Produto");
-        alerta.setMessage("Confirma a exclusão do produto "
+        alerta.setTitle(getString(R.string.txtDeleteTeam));
+        alerta.setMessage(getString(R.string.txtConfirmDeleteTeam)
                 + players.getName() + "?");
-        alerta.setNeutralButton("Cancelar", null);
-        alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+        alerta.setNeutralButton(getString(R.string.txtCancel), null);
+        alerta.setPositiveButton(getString(R.string.txtYes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 PlayersDAO.exclud(List_PlayerActivity.this, players.getIdPlayer());
@@ -135,11 +135,11 @@ public class List_PlayerActivity extends AppCompatActivity {
 
     private void deletePlayer(final Players players){
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
-        alerta.setTitle("Excluir Produto");
-        alerta.setMessage("Confirma a exclusão do produto "
+        alerta.setTitle(getString(R.string.txtDeletePlayer));
+        alerta.setMessage(getString(R.string.txtConfirmDeletePlayer)
                 + players.getName() + "?");
-        alerta.setNeutralButton("Cancelar", null);
-        alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+        alerta.setNeutralButton(getString(R.string.txtCancel), null);
+        alerta.setPositiveButton(getString(R.string.txtYes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 PlayersDAO.exclud(List_PlayerActivity.this, players.getIdPlayer());
@@ -148,6 +148,7 @@ public class List_PlayerActivity extends AppCompatActivity {
         });
         alerta.show();
     }
+
 
    private void loadTeamList(Players players, Bundle extras){
        List<Players> teamListL = PlayersDAO.getPlay(this, idTeam);
@@ -174,12 +175,13 @@ public class List_PlayerActivity extends AppCompatActivity {
        List<Players> playersList = PlayersDAO.getPlay(this,idTeam);
        if(playersList.size() == 0){
             lvPlayer.setEnabled(false);
-           Players fakePlayer = new Players();
-           fakePlayer.setIdPlayer(0);
-           fakePlayer.setName("Lista vazia!");
-            fakePlayer.setNumberShirt("Lista vazia!");
-           playersList.add(fakePlayer);
-       }
+            Players fakePlayer = new Players();
+            fakePlayer.setIdPlayer(0);
+            fakePlayer.setName(getString(R.string.txtEmptyList));
+            fakePlayer.setNumberShirt(getString(R.string.txtEmptyList));
+            playersList.add(fakePlayer);
+        }
+
 
        playersList.toString();
        Toast.makeText(this, playersList.toString(), Toast.LENGTH_SHORT).show();

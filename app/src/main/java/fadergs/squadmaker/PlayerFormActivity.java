@@ -69,8 +69,8 @@ public class PlayerFormActivity extends AppCompatActivity {
         if(name.isEmpty()){
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setIcon(android.R.drawable.ic_dialog_alert);
-            alert.setTitle("Atenção, vacilão");
-            alert.setMessage("Preenche o time aí, tá de sacanagem?");
+            alert.setTitle(getString(R.string.txtAttention));
+            alert.setMessage(getString(R.string.txtMessageTeam));
             alert.setPositiveButton("OK",null);
             alert.show();
         }else{
@@ -97,8 +97,8 @@ public class PlayerFormActivity extends AppCompatActivity {
         if(name.isEmpty()){
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setIcon(android.R.drawable.ic_dialog_alert);
-            alert.setTitle("Atenção, vacilão");
-            alert.setMessage("Preenche o time aí, tá de sacanagem?");
+            alert.setTitle(getString(R.string.txtAttention));
+            alert.setMessage(getString(R.string.txtMessagePlayer));
             alert.setPositiveButton("OK",null);
             alert.show();
         }else{

@@ -67,17 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Escolha uma opção");
+                builder.setTitle(getString(R.string.txtChoiceOption));
 
 
-                builder.setPositiveButton("Atualizar time", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.txtUpdateTeam), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         updateTeam( (Team) adapterView.getItemAtPosition(i));
                     }
                 });
 
-                builder.setNegativeButton("Excluir time", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.txtDeleteTeam), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteTeam( (Team) adapterView.getItemAtPosition(i) );
@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void deleteTeam(final Team team){
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
-        alerta.setTitle("Excluir Produto");
-        alerta.setMessage("Confirma a exclusão do produto "
+        alerta.setTitle(getString(R.string.txtDeleteTeam));
+        alerta.setMessage(getString(R.string.txtConfirmDeleteTeam)
                 + team.getName() + "?");
-        alerta.setNeutralButton("Cancelar", null);
+        alerta.setNeutralButton(getString(R.string.txtCancel), null);
         alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             teamList.setEnabled(false);
             Team fakeTeam = new Team();
             fakeTeam.setID(0);
-            fakeTeam.setName("Lista vazia!");
+            fakeTeam.setName(getString(R.string.txtEmptyList));
             teamListL.add(fakeTeam);
         }
 
