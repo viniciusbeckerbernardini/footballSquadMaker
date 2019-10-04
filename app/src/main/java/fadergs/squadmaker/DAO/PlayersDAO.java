@@ -45,19 +45,19 @@ public class PlayersDAO {
 
     }
 
-    public static List<Players> getPlay(Context contexto){
+    public static List<Players> getPlay(Context contexto, Integer idTeam){
 
         List<Players> listPlayers = new ArrayList<>();
 
         Persistence banco = new Persistence(contexto);
         SQLiteDatabase db = banco.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM Players ORDER BY namePlayer",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM players WHERE idTeam = "+idTeam,null);
 
         if(cursor.getCount()>0){
             cursor.moveToFirst();
 
-            System.out.println(cursor);
+            //System.out.println(cursor);
 
             do {
                 Players j = new Players();

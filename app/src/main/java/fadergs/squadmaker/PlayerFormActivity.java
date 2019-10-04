@@ -20,7 +20,7 @@ public class PlayerFormActivity extends AppCompatActivity {
     private EditText etNome, etNrCamisa;
     private Button btnSave;
     private String acao;
-    private int idPlayer;
+    private int idTeam;
 
 
     @Override
@@ -33,8 +33,13 @@ public class PlayerFormActivity extends AppCompatActivity {
 
         btnSave = (Button) findViewById(R.id.btnSave);
 
+
+
+
         Intent intent = getIntent();
         final Bundle extras = intent.getExtras();
+
+
 
 
         if (extras != null) {
@@ -47,10 +52,12 @@ public class PlayerFormActivity extends AppCompatActivity {
                 }
             });
         } else {
+            idTeam = extras.getInt("idTeam");
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    save();
+
+                    save(extras);
                 }
             });
         }
@@ -81,9 +88,11 @@ public class PlayerFormActivity extends AppCompatActivity {
         }
     }
 
-    private void save(){
+    private void save(Bundle extras){
+        int idTeam = extras.getInt("idTeam");
         String name = etNome.getText().toString();
         String numberShirt = etNrCamisa.getText().toString();
+
 
         if(name.isEmpty()){
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -95,6 +104,7 @@ public class PlayerFormActivity extends AppCompatActivity {
         }else{
             Players t = new Players();
 
+            t.setIdTeam(idTeam);
             t.setName(name);
             t.setNumberShirt(numberShirt);
 

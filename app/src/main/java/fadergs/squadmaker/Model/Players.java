@@ -38,6 +38,12 @@ public class Players {
     public void setNumberShirt(String numberShirt) {
         this.numberShirt = numberShirt;
     }
+
+    @Override
+    public String toString(){
+        return "Id :" + this.idPlayer + " Nome:"+this.name+ " Numero Camiseta:"+this.numberShirt +" Id Time:"+this.idTeam ;
+    }
+
 }
 
 
