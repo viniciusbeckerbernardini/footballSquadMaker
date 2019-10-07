@@ -97,7 +97,7 @@ public class PlayerFormActivity extends AppCompatActivity {
 
             t.setName(name);
             t.setNumberShirt(numberShirt);
-
+            t.setIdTeam(1);
             PlayersDAO.insertPlay(this,t);
 
             this.finish();
