@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Persistence extends SQLiteOpenHelper {
 
-    private static final int VERSAO = 1;
+    private static final int VERSAO = 2;
     private static final String NOME = "AppSquadMaker";
 
     public Persistence(Context context){
@@ -29,6 +29,8 @@ public class Persistence extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL("drop table players");
+        sqLiteDatabase.execSQL("drop table teams");
+        onCreate(sqLiteDatabase);
     }
 }

@@ -63,7 +63,7 @@ public class PlayersDAO {
                 Players j = new Players();
                 j.setIdPlayer(cursor.getInt(0));
                 j.setName(cursor.getString(1));
-                j.setNumberShirt(cursor.getString(3));
+                j.setNumberShirt(cursor.getInt(3));
                 j.setIdTeam(cursor.getInt(2));
                 listPlayers.add(j);
 
@@ -86,7 +86,7 @@ public class PlayersDAO {
             Players j = new Players();
             j.setIdPlayer(  cursor.getInt( 0 ) );
             j.setName( cursor.getString( 1 ) );
-            j.setNumberShirt( cursor.getString( 3 ) );
+            j.setNumberShirt( cursor.getInt( 3 ) );
             j.setIdTeam(cursor.getInt(2));
 
             return j;

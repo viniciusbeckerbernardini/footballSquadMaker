@@ -22,21 +22,22 @@ import fadergs.squadmaker.Model.Team;
 
 public class List_PlayerActivity extends AppCompatActivity {
 
-    private Integer idTeam;
+    private int idTeam;
     private ListView lvPlayer;
-
+    Intent intent = getIntent();
+    private Bundle extras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list__player);
 
+        extras = getIntent().getExtras();
+
         lvPlayer = findViewById(R.id.lvPlayer);
         //idTeam = getIntent().getExtras().getInt("idTeam");
 
-        Intent intent = getIntent();
-        final Bundle extras = intent.getExtras();
 
-        idTeam = extras.getInt("idTeam");
+        idTeam = extras.getInt("teamID");
         loadPlayerList(idTeam);
 
 
@@ -44,10 +45,9 @@ public class List_PlayerActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                idTeam = extras.getInt("teamID");
+                sendFormPlayer(idTeam);
 
-                Intent intent = new Intent(List_PlayerActivity.this, PlayerFormActivity.class);
-                intent.putExtra("idTeam", idTeam);
-                startActivity(intent);
             }
         });
 
@@ -115,7 +115,7 @@ public class List_PlayerActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putInt("idPlayer",players.getIdPlayer());
         bundle.putString("namePlayer",players.getName());
-        bundle.putString("numberShirt",players.getNumberShirt());
+        bundle.putInt("numberShirt",players.getNumberShirt());
         Intent intent = new Intent(List_PlayerActivity.this,PlayerFormActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
@@ -150,18 +150,10 @@ public class List_PlayerActivity extends AppCompatActivity {
     }
 
 
-   private void loadTeamList(Players players, Bundle extras){
-       List<Players> teamListL = PlayersDAO.getPlay(this, idTeam);
-       if(teamListL.size() == 0 || extras.getInt("idTeam") != players.getIdTeam() ) {
-          lvPlayer.setEnabled(false);
-           Players fakeTeam = new Players();
-           fakeTeam.setIdPlayer(0);
-           fakeTeam.setName("Lista vazia!");
-           teamListL.add(fakeTeam);
-       }
-
-       PlayerAdapter playerAdapter= new PlayerAdapter(this, teamListL);
-       lvPlayer.setAdapter(playerAdapter);
+    private void sendFormPlayer(final Integer team){
+        Intent intent = new Intent(List_PlayerActivity.this, PlayerFormActivity.class);
+        intent.putExtra("teamID", idTeam);
+        startActivity(intent);
     }
 
     @Override
@@ -172,13 +164,13 @@ public class List_PlayerActivity extends AppCompatActivity {
 
    private void loadPlayerList(Integer idTeam){
       // idTeam = extras.getInt("idTeam");
-       List<Players> playersList = PlayersDAO.getPlay(this,idTeam);
+       List<Players> playersList = PlayersDAO.getPlay(List_PlayerActivity.this,idTeam);
        if(playersList.size() == 0){
             lvPlayer.setEnabled(false);
             Players fakePlayer = new Players();
             fakePlayer.setIdPlayer(0);
             fakePlayer.setName(getString(R.string.txtEmptyList));
-            fakePlayer.setNumberShirt(getString(R.string.txtEmptyList));
+            //fakePlayer.setNumberShirt(getString(R.string.txtEmptyList));
             playersList.add(fakePlayer);
         }
 

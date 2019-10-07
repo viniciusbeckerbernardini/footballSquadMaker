@@ -52,7 +52,7 @@ public class PlayerFormActivity extends AppCompatActivity {
                 }
             });
         } else {
-            idTeam = extras.getInt("idTeam");
+            idTeam = extras.getInt("teamID");
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -89,7 +89,7 @@ public class PlayerFormActivity extends AppCompatActivity {
     }
 
     private void save(Bundle extras){
-        int idTeam = extras.getInt("idTeam");
+        int idTeam = extras.getInt("teamID");
         String name = etNome.getText().toString();
         String numberShirt = etNrCamisa.getText().toString();
 
@@ -106,8 +106,8 @@ public class PlayerFormActivity extends AppCompatActivity {
 
             t.setIdTeam(idTeam);
             t.setName(name);
-            t.setNumberShirt(numberShirt);
-            t.setIdTeam(1);
+            //t.setNumberShirt(numberShirt);
+            //t.setIdTeam(1);
             PlayersDAO.insertPlay(this,t);
 
             this.finish();

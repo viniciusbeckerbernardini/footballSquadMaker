@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        teamList.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener(){
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l){
-                deleteTeam( (Team) adapterView.getItemAtPosition(i) );
-                return true;
-            }
-        });
+//        teamList.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener(){
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l){
+//                deleteTeam( (Team) adapterView.getItemAtPosition(i) );
+//                return true;
+//            }
+//        });
 
         teamList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -126,11 +126,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendIdTeamPlayer(final Team team){
 
-        Bundle bundle = new Bundle();
-        bundle.putInt("teamID",team.getID());
+       // Bundle bundle = new Bundle();
+       // bundle.putInt("teamID",team.getID());
         //bundle.putString("teamName",team.getName());
         Intent intent = new Intent(MainActivity.this,List_PlayerActivity.class);
-        intent.putExtras(bundle);
+        intent.putExtra("teamID",team.getID());
         startActivity(intent);
     }
 

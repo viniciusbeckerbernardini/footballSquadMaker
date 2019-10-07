@@ -5,7 +5,7 @@ public class Players {
     private int idPlayer;
     private int idTeam;
     private String name;
-    private String numberShirt;
+    private int numberShirt;
 
     public int getIdTeam() {
         return idTeam;
@@ -23,7 +23,7 @@ public class Players {
         this.name = name;
     }
 
-    public String getNumberShirt() {
+    public int getNumberShirt() {
         return numberShirt;
     }
 
@@ -35,7 +35,7 @@ public class Players {
         this.idPlayer = idPlayer;
     }
 
-    public void setNumberShirt(String numberShirt) {
+    public void  setNumberShirt(int numberShirt) {
         this.numberShirt = numberShirt;
     }
 
