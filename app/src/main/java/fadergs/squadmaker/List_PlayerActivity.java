@@ -60,14 +60,14 @@ public class List_PlayerActivity extends AppCompatActivity {
                 builder.setTitle(getString(R.string.txtChoiceOption));
 
 
-                builder.setPositiveButton(getString(R.string.txtUpdateTeam), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.txtUpdatePlayer), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         updateTeam( (Players) adapterView.getItemAtPosition(i));
                     }
                 });
 
-                builder.setNegativeButton(getString(R.string.txtDeleteTeam), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.txtDeletePlayer), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteTeam( (Players) adapterView.getItemAtPosition(i) );
@@ -94,8 +94,8 @@ public class List_PlayerActivity extends AppCompatActivity {
     }
     private void deleteTeam(final Players players){
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
-        alerta.setTitle(getString(R.string.txtDeleteTeam));
-        alerta.setMessage(getString(R.string.txtConfirmDeleteTeam)
+        alerta.setTitle(getString(R.string.txtDeletePlayer));
+        alerta.setMessage(getString(R.string.txtConfirmDeletePlayer)
                 + players.getName() + "?");
         alerta.setNeutralButton(getString(R.string.txtCancel), null);
         alerta.setPositiveButton(getString(R.string.txtYes), new DialogInterface.OnClickListener() {

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name"> Team Creator</string>
+    <string name="team_id"> Team id </string>
+    <string name="team_name"> Team Name </string>
+    <string name="txtNamePlayer"> Enter player name </string>
+    <string name="txtNumberShirt"> Enter t-shirt number </string>
+    <string name="txtNameOfTeam"> Digite o nome do time </string>
+    <string name="txtRegisterPlayers"> Enter team name </string>
+    <string name="txtRegisterTeam"> Register teams </string>
+    <string name="btnSave"> Save </string>
+    <string name="title_activity_list__player"> List_PlayerActivity </string>
+    <string name="txtChoiceOption"> Choose an option </string>
+    <string name="txtUpdateTeam"> Update Team </string>
+    <string name="txtUpdatePlayer"> Update Player </string>
+    <string name="txtDeleteTeam"> Delete team </string>
+    <string name="txtDeletePlayer"> Delete player </string>
+    <string name="txtConfirmDeleteTeam"> Confirm team deletion </string>
+    <string name="txtConfirmDeletePlayer"> Confirm Player deletion </string>
+    <string name="txtCancel"> Cancel </string>
+    <string name="txtYes"> Yes </string>
+    <string name="txtEmptyList"> Empty List! </string>
+    <string name="txtAttention"> Attention, vacillation </string>
+    <string name="txtMessageTeam"> Fill the team there, are you slutty?</string>
+    <string name="txtMessagePlayer">Fill the Player there, are you slutty?</string>
+</resources>

@@ -24,7 +24,7 @@ public class Persistence extends SQLiteOpenHelper {
                 "namePlayer TEXT,"+
                 "IdTeam INTEGER,"+
                 "numberShirt INTEGER,"+
-                "FOREIGN KEY(IdTeam) REFERENCES team(idTeam));");
+                "FOREIGN KEY(IdTeam) REFERENCES teams(idTeam));");
     }
 
     @Override
