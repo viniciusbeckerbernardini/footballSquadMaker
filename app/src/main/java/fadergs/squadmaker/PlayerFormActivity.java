@@ -19,8 +19,8 @@ public class PlayerFormActivity extends AppCompatActivity {
 
     private EditText etNome, etNrCamisa;
     private Button btnSave;
-    private String acao;
     private int idTeam;
+    private boolean updatePlayer;
 
 
     @Override
@@ -34,21 +34,20 @@ public class PlayerFormActivity extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.btnSave);
 
 
+        final Bundle extras = getIntent().getExtras();
+
+        idTeam = extras.getInt("teamID");
+        updatePlayer = extras.getBoolean("update");
 
 
-        Intent intent = getIntent();
-        final Bundle extras = intent.getExtras();
-
-
-
-
-        if (extras != null) {
+        if (updatePlayer) {
+            idTeam = extras.getInt("teamID");
             etNome.setText(extras.getString("namePlayer"));
-            etNrCamisa.setText(extras.getString("numberShirt"));
+            etNrCamisa.setText( String.valueOf( extras.getInt("numberShirt") ));
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    update(extras);
+                    update(idTeam);
                 }
             });
         } else {
@@ -56,16 +55,15 @@ public class PlayerFormActivity extends AppCompatActivity {
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     save(extras);
                 }
             });
         }
-
     }
 
-    protected void update(Bundle extras) {
+    protected void update(Integer team) {
         String name = etNome.getText().toString();
+        String nShirt = etNrCamisa.getText().toString();
         if(name.isEmpty()){
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setIcon(android.R.drawable.ic_dialog_alert);
@@ -74,12 +72,11 @@ public class PlayerFormActivity extends AppCompatActivity {
             alert.setPositiveButton("OK",null);
             alert.show();
         }else{
-            int idPlayer = extras.getInt("idPlayer");
-
             Players t = new Players();
 
-            t.setIdPlayer(idPlayer);
+            t.setIdTeam(idTeam);
             t.setName(name);
+            t.setNumberShirt(Integer.parseInt(nShirt));
 
             PlayersDAO.editPlayers(this,t);
 
@@ -89,7 +86,7 @@ public class PlayerFormActivity extends AppCompatActivity {
     }
 
     private void save(Bundle extras){
-        int idTeam = extras.getInt("teamID");
+      //  int idTeam = extras.getInt("teamID");
         String name = etNome.getText().toString();
         String numberShirt = etNrCamisa.getText().toString();
 
@@ -106,7 +103,7 @@ public class PlayerFormActivity extends AppCompatActivity {
 
             t.setIdTeam(idTeam);
             t.setName(name);
-            //t.setNumberShirt(numberShirt);
+            t.setNumberShirt( Integer.valueOf(numberShirt) );
             //t.setIdTeam(1);
             PlayersDAO.insertPlay(this,t);
 

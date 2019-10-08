@@ -1,5 +1,6 @@
 package fadergs.squadmaker.DAO;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,6 +18,10 @@ public class PlayersDAO {
 
         Persistence banco = new Persistence(contexto);
         SQLiteDatabase db = banco.getWritableDatabase();
+
+        AlertDialog.Builder alerta = new AlertDialog.Builder(contexto);
+        alerta.setMessage( players.toString() );
+        alerta.show();
 
         ContentValues values = new ContentValues();
         values.put("IdTeam",players.getIdTeam());

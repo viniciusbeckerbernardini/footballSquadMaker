@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Persistence extends SQLiteOpenHelper {
 
-    private static final int VERSAO = 2;
+    private static final int VERSAO = 3;
     private static final String NOME = "AppSquadMaker";
 
     public Persistence(Context context){
@@ -23,14 +23,14 @@ public class Persistence extends SQLiteOpenHelper {
                 "idPlayer INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
                 "namePlayer TEXT,"+
                 "IdTeam INTEGER,"+
-                "numberShirt INTEGER,"+
-                "FOREIGN KEY(IdTeam) REFERENCES teams(idTeam));");
+                "numberShirt INTEGER )");
+               // "FOREIGN KEY(IdTeam) REFERENCES teams(idTeam));");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("drop table players");
-        sqLiteDatabase.execSQL("drop table teams");
+      //  sqLiteDatabase.execSQL("drop table teams");
         onCreate(sqLiteDatabase);
     }
 }

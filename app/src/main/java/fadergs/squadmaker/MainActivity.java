@@ -2,22 +2,18 @@ package fadergs.squadmaker;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ListView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import fadergs.squadmaker.DAO.TeamsDAO;
-import fadergs.squadmaker.Model.Players;
 import fadergs.squadmaker.Model.Team;
 
 
@@ -41,23 +37,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        teamList.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener(){
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l){
-//                deleteTeam( (Team) adapterView.getItemAtPosition(i) );
-//                return true;
-//            }
-//        });
 
         teamList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 sendIdTeamPlayer((Team) adapterView.getItemAtPosition(i));
-               // Intent intent = new Intent(MainActivity.this, List_PlayerActivity.class);
-              // Team team = (Team) adapterView.getItemAtPosition(i);
 
-               // intent.putExtra("IdTeam", team.getID());
-               // startActivity(intent);
             }
         });
 
@@ -124,13 +109,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void sendIdTeamPlayer(final Team team){
-
-       // Bundle bundle = new Bundle();
-       // bundle.putInt("teamID",team.getID());
-        //bundle.putString("teamName",team.getName());
-        Intent intent = new Intent(MainActivity.this,List_PlayerActivity.class);
-        intent.putExtra("teamID",team.getID());
+    private void sendIdTeamPlayer(Team team){
+        Bundle bundle = new Bundle();
+        bundle.putInt("teamID",team.getID());
+        Intent intent = new Intent(MainActivity.this, ListPlayerActivity.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
